@@ -31,7 +31,11 @@
                 <div class="temperature-range text-white position-absolute"> {{ patientInfo.minTemp | celsius}} ~ {{ patientInfo.maxTemp | celsius}} </div>
             </div>
             <div class="card-body card-graph" v-show="!hideHistory">
-                <component :is="'patient-history'" v-bind:shareKey="patientInfo.sharekey" v-if="isShownHistory"></component>
+                <component :is="'patient-history'"
+                           v-bind:shareKey="patientInfo.sharekey"
+                           v-bind:minTemp="patientInfo.minTemp"
+                           v-bind:maxTemp="patientInfo.maxTemp"
+                           v-if="isShownHistory"></component>
             </div>
             <div class="card-footer header-safe text-center">
                 <p class="card-header-info see-more" @click="goToHistory()">
