@@ -1,0 +1,1 @@
+const tickTime = 30

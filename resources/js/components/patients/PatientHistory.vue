@@ -88,7 +88,9 @@
                     datasets: [{
                         data: data,
                         fill: false,
-                        label: newVal
+                        label: newVal,
+                        borderColor: '#00c372',
+                        pointStyle: 'line'
                     }, {
                         data: data.map(() => this.minTemp),
                         fill: false,

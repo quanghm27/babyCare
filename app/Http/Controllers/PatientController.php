@@ -67,12 +67,12 @@ class PatientController extends Controller
             $patient->medical_number = $request->get('medicalNo');
             $patient->phone_number = $request->get('phoneNo');
             $patient->deviceUserId = $request->get('deviceUserId');
-            $patient->joinDate = Carbon::parse($request->get('joinDate'))->toDateTimeString();
+            $patient->joinDate = $request->get('joinDate');
             $patient->minTemp = $request->get('minTemp');
             $patient->maxTemp = $request->get('maxTemp');
             $patient->note = $request->get('note');
             //$patient->avatar = $request->get('avatar');
-            $patient->expiredTime = Carbon::parse($request->get('expiredTime'))->toDateTimeString();
+            $patient->expiredTime = $request->get('expiredTime');
             $patient->save();
             DB::commit();
         }catch (Exception $e) {

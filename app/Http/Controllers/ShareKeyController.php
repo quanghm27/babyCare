@@ -33,4 +33,11 @@ class ShareKeyController extends Controller
 
         return response()->json($result);
     }
+
+    public function index()
+    {
+        $patient = Patient::all();
+
+        return view('sharekeys.index')->with(['sharekeys' => $patient]);
+    }
 }

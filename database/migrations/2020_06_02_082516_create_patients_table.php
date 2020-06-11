@@ -22,8 +22,8 @@ class CreatePatientsTable extends Migration
             $table->string('name');
             $table->string('roomNo');
             $table->string('bedNo');
-            $table->date('joinDate');
-            $table->date('releaseDate')->nullable();
+            $table->dateTime('joinDate');
+            $table->dateTime('releaseDate')->nullable();
             $table->integer('minTemp');
             $table->integer('maxTemp');
             $table->string('note')->nullable();

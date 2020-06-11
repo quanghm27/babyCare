@@ -1,20 +1,25 @@
 <template v-if="hideHistory">
-    <div v-bind:class="{'col-md-4': hideHistory, 'col-md-8' : !hideHistory}">
+    <div v-bind:class="{'col-md-4': hideHistory, 'col-md-12' : !hideHistory}">
         <div class="card">
             <div class="card-header header-safe">
-                <div class="card-header-info float-left">Phòng: {{ patientInfo.roomNo }}</div>
-                <div class="card-header-info float-right">Mã y tế: {{ patientInfo.medical_number }}</div>
-                <div class="clearfix"></div>
-                <div class="card-header-info float-left">Giường: {{ patientInfo.bedNo }}</div>
-                <div class="card-header-info float-right">Số điện thoại: {{ patientInfo.phone_number}}</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-2 card-header-info " v-resize-text="{ratio:1.5, minFontSize: '20px', maxFontSize: '25px', delay: 200}">Phòng: {{ patientInfo.roomNo }}</div>
+                        <div class="col-md-8 col-sm-2 card-header-info text-right" v-resize-text="{ratio:1.5, minFontSize: '20px', maxFontSize: '25px', delay: 200}">Mã y tế: {{ patientInfo.medical_number }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 card-header-info" v-resize-text="{ratio:1.5, minFontSize: '20px', maxFontSize: '25px', delay: 200}">Giường: {{ patientInfo.bedNo }}</div>
+                        <div class="col-md-8 col-sm-8 card-header-info text-right" v-resize-text="{ratio:1.5, minFontSize: '20px', maxFontSize: '25px', delay: 200}">Số điện thoại: {{ patientInfo.phone_number}}</div>
+                    </div>
+                </div>
             </div>
             <div class="card-body position-relative" v-bind:class="tempState">
                 <div class="batery-info text-white position-absolute">
                     <i class="fa" v-bind:class="batteryInfo"></i>
                     {{ patientInfo.batteryValue | percent}}</div>
                 <div class="patient-avatar position-absolute">
-                    <img class="rounded-circle" :src="imageAvatar" alt="avatar" width="100" height="100">
-                    <div class="status" v-bind:class="connectStatus"></div>
+                    <img class="rounded-circle" style="border: 2px solid white" :src="imageAvatar" alt="avatar" width="100" height="100">
+                    <div v-bind:class="connectStatus"></div>
                 </div>
 
                 <div class="last-update text-white position-absolute"> {{ lastseen}}</div>
@@ -48,7 +53,11 @@
 </template>
 
 <script>
+    import ResizeText from 'vue-resize-text'
     export default {
+        directives:  {
+            ResizeText
+        },
         props: ['patientInfo'],
         data() {
             return {
@@ -69,7 +78,7 @@
                 return tempState
             },
             birthDay() {
-                return moment().format('LL')
+                return moment(this.patientInfo.dateOfBirth).format('LL')
             },
             batteryInfo() {
                 let info = 'fa-battery-'
@@ -94,7 +103,7 @@
                 return this.patientInfo.imageUrl || '/images/default-avatar.png'
             },
             connectStatus() {
-                return this.patientInfo.isConnecting ? 'status-connect' : 'status-not-connect'
+                return this.patientInfo.isConnecting ? 'status-connect' : ''
             }
         },
         methods: {
@@ -126,7 +135,7 @@
     }
     .card-header-info {
         font-weight: 700;
-        font-size: 1.2em;
+        /*font-size: 1.2em;*/
         color: #fff;
     }
     .see-more {
@@ -143,6 +152,7 @@
     }
     .batery-info {
         font-size: 0.9em;
+        top: 5%;
     }
     .patient-avatar, .patient-temperature {
         top: 2em;
@@ -180,19 +190,14 @@
     .card-body {
         min-height: 200px;
     }
-    .status {
+    .status-connect {
+        background: #42B72A;
         height: 20px;
         width: 20px;
         border-radius: 50%!important;
         bottom: 5px;
         left: 10px;
-        border: 2px solid white;
         position: absolute;
-    }
-    .status-connect {
-        background: #42B72A;
-    }
-    .status-not-connect {
-        background: #FFA602;
+        border: 2px solid white;
     }
 </style>

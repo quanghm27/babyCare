@@ -25,10 +25,12 @@ files.keys().forEach(function(key) {
 });
 
 //Vue.component('patient-form', require('./components/PatientCreate.vue').default);
-const VueInputMask = require('vue-inputmask').default
+// const VueMask = require('v-mask').default
+//
+// Vue.use(VueMask)
 
-Vue.use(VueInputMask)
-
+import { VueMaskDirective } from 'v-mask'
+Vue.directive('mask', VueMaskDirective )
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -4,6 +4,14 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
         </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">Tên Bệnh viện</a>
+        </li>
+        @if (Auth::user()->isOperator())
+        <li class="nav-item">
+            <a href="#" class="nav-link">{{ Auth::user()->department->name }}</a>
+        </li>
+        @endif
     </ul>
 
     <!-- Right navbar links -->
@@ -20,7 +28,7 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" href="{{ route('logout') }}"
+                <a class="dropdown-item" href="#"
                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                     <i class="fa fa-sign-out"></i>

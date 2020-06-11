@@ -55,21 +55,21 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                     </div>
-                    <input id="phoneNo" type="text" class="form-control" v-model="form.phoneNo" required autocomplete="off">
+                    <input id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phoneNo" required autocomplete="off">
                 </div>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-4">
+            <div class="col-7">
                 <label>Ngày nhập viện</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                     </div>
-                    <input type="text" class="form-control" v-mask="{mask: '99/99/9999'}" v-model="form.joinDate">
+                    <input type="datetime-local" class="form-control" v-model="form.joinDate">
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <label for="meidcalId">Mã y tế</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -90,7 +90,7 @@
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-info">Thấp nhất</button>
                     </div>
-                    <input type="text" class="form-control" v-mask="'99°C'" v-model="form.minTemp">
+                    <input type="text" class="form-control" v-mask="'##°C'" v-model="form.minTemp">
                 </div>
             </div>
             <div class="col-4">
@@ -98,7 +98,7 @@
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-danger">Cao nhất</button>
                     </div>
-                    <input type="text" class="form-control" v-mask="'99°C'" v-model="form.maxTemp">
+                    <input type="text" class="form-control" v-mask="'##°C'" v-model="form.maxTemp">
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@ export default {
                 medicalNo: '',
                 bedNo: '',
                 roomNo: '',
-                joinDate: moment().format('DD/MM/YYYY'),
+                joinDate: '',
                 minTemp: 35,
                 maxTemp: 38,
                 note:'',
@@ -161,6 +161,7 @@ export default {
                 return
             }
             let deviceUserId = result.data.data.deviceUserID
+            this.form.expiredTime = result.data.data.expiredTime
             let params = {
                 deviceUserId: deviceUserId
             }
@@ -174,7 +175,6 @@ export default {
             }
 
             this.form.deviceUserId = deviceUserId
-            this.form.expiredTime = result.data.expiredTime
             this.form.avatar = result.data.data.imageUrl
             this.validShareKey = true
         },
@@ -186,12 +186,22 @@ export default {
             if (this.invalidShareKey) {
                 return
             }
-            this.form.joinDate = moment(this.form.joinDate)
+            // unmask before submit
+            this.form.minTemp = _.replace(this.form.minTemp, '°C', '')
+            this.form.maxTemp = _.replace(this.form.maxTemp, '°C', '')
+            this.form.phoneNo = _.replace(this.form.phoneNo, /-/g, '')
+
             let result = await axios.post(FORM_ACTION, this.form)
             if (result.data.status) {
                 this.isSubmitted = true
             }
         }
+    },
+    mounted() {
+        console.log('update', this.form.joinDate)
+    },
+    created() {
+        console.log(this.form.joinDate)
     },
     computed: {
         submitSucess: function() {
