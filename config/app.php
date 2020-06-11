@@ -229,4 +229,5 @@ return [
 
     ],
 
+    'hospital_name' => env('HOSPITAL_NAME', 'Tên bệnh viện')
 ];

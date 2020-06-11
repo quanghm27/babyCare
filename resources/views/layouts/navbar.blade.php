@@ -5,7 +5,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">Tên Bệnh viện</a>
+            <a href="#" class="nav-link">{{ config('app.hospital_name') }}</a>
         </li>
         @if (Auth::user()->isOperator())
         <li class="nav-item">
