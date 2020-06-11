@@ -29,7 +29,8 @@ class PatientController extends Controller
     public function index()
     {
         //
-        $patients = Patient::all();
+        $operator_id = Auth::user()->id;
+        $patients = Patient::where('operator_id', $operator_id)->get();
 
         $data = [
             'patients' => $patients

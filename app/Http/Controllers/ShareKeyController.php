@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShareKeyController extends Controller
 {
@@ -14,8 +15,9 @@ class ShareKeyController extends Controller
      */
     public function checkShareKey(Request $request)
     {
+        $operator_id = Auth::user()->id;
         $deviceUserId = $request->get('deviceUserId');
-        $patient = Patient::where('deviceUserId', '=' , $deviceUserId)->first();
+        $patient = Patient::where('deviceUserId', '=' , $deviceUserId)->where('operator_id', '=', $operator_id)->first();
 
         if (!is_null($patient)) {
             $result = [
@@ -36,7 +38,8 @@ class ShareKeyController extends Controller
 
     public function index()
     {
-        $patient = Patient::all();
+        $operator_id = Auth::user()->id;
+        $patient = Patient::where('operator_id', $operator_id)->get();
 
         return view('sharekeys.index')->with(['sharekeys' => $patient]);
     }
