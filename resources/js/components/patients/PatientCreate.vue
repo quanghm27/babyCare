@@ -163,7 +163,8 @@ export default {
             let deviceUserId = result.data.data.deviceUserID
             this.form.expiredTime = result.data.data.expiredTime
             let params = {
-                deviceUserId: deviceUserId
+                deviceUserId: deviceUserId,
+                shareKey: key
             }
 
             // Check profile exist

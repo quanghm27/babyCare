@@ -2,7 +2,7 @@
     <div v-bind:class="{'col-md-4': hideHistory, 'col-md-12' : !hideHistory}">
         <div class="card">
             <div class="card-header header-safe">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-4 col-sm-2 card-header-info " v-resize-text="{ratio:1.5, minFontSize: '20px', maxFontSize: '25px', delay: 200}">Phòng: {{ patientInfo.roomNo }}</div>
                         <div class="col-md-8 col-sm-2 card-header-info text-right" v-resize-text="{ratio:1.5, minFontSize: '20px', maxFontSize: '25px', delay: 200}">Mã y tế: {{ patientInfo.medical_number }}</div>

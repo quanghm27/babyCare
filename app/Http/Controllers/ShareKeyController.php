@@ -17,21 +17,35 @@ class ShareKeyController extends Controller
     {
         $operator_id = Auth::user()->id;
         $deviceUserId = $request->get('deviceUserId');
-        $patient = Patient::where('deviceUserId', '=' , $deviceUserId)->where('operator_id', '=', $operator_id)->first();
+        $sharekey = $request->get('shareKey');
 
+        // Check sharekey exist
+        $patient = Patient::where('shareKey', $sharekey);
         if (!is_null($patient)) {
             $result = [
                 'status' => false,
-                'message' => 'Đã tồn tại hồ sơ của mã chia sẻ này',
+                'message' => 'Đã tồn tại mã chia sẻ',
                 'data' => null
             ];
-        } else {
-            $result = [
-                'status' => true,
-                'message' => '',
-                'data' => null
-            ];
+            return response()->json($result);
         }
+
+        // Check profile exist
+        $patient = Patient::where('deviceUserId', '=' , $deviceUserId)->where('operator_id', '=', $operator_id)->first();
+        if (!is_null($patient)) {
+            $result = [
+                'status' => false,
+                'message' => 'Đã tồn tại hồ sơ của mã chia sẻ này trong khoa',
+                'data' => null
+            ];
+            return response()->json($result);
+        }
+
+        $result = [
+            'status' => true,
+            'message' => '',
+            'data' => null
+        ];
 
         return response()->json($result);
     }
