@@ -15,7 +15,7 @@
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-4 col-form-label">Tài khoản đăng nhập</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" v-bind:class="{'is-invalid': invalidEmail && form.email, 'is-valid': !invalidEmail && form.email}" name="email" required id="inputEmail3" placeholder="Email" v-model="form.email" v-on:input="validateEmail">
+                <input type="text" class="form-control" v-bind:class="{'is-invalid': invalidEmail && form.email, 'is-valid': !invalidEmail && form.email}" name="email" required id="inputEmail3" placeholder="Nhập tên đăng nhập" v-model="form.email" v-on:input="validateEmail">
                 <span class="text-danger" v-if="invalidEmail && emailMessage">{{ emailMessage }}</span>
             </div>
         </div>
