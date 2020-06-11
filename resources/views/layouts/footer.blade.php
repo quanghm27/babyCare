@@ -5,5 +5,5 @@
 
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018-2020 <a href="https://https://nhietkethongminh.vn/">nhietkethongminh.vn</a></strong>
+    <strong>Copyright &copy; 2018-2020 <a href="https://nhietkethongminh.vn/">nhietkethongminh.vn</a></strong>
 </footer>

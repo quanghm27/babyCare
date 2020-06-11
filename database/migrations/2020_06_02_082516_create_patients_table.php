@@ -28,6 +28,7 @@ class CreatePatientsTable extends Migration
             $table->integer('maxTemp');
             $table->string('note')->nullable();
             $table->dateTime('expiredTime')->nullable();
+            $table->integer('operator_id');
             $table->timestamps();
         });
     }

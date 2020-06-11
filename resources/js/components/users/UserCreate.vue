@@ -7,24 +7,15 @@
             </button>
         </div>
         <div class="form-group row">
-            <label for="department" class="col-sm-4 col-form-label">Khoa</label>
+            <label for="username" class="col-sm-4 col-form-label">Tên Khoa</label>
             <div class="col-sm-8">
-                <select id="department" class="form-control" required v-model="form.departmentId">
-                    <option value="-" class="form-control">---Hãy chọn một khoa---</option>
-                    <option class="form-control" v-for="item in departments" :value="item.id">{{ item.name}}</option>
-                </select>
+                <input type="text" id="username" name="username" required class="form-control" placeholder="Nhập tên khoa" v-model="form.name">
             </div>
         </div>
         <div class="form-group row">
-            <label for="username" class="col-sm-4 col-form-label">Tên người dùng</label>
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Tài khoản đăng nhập</label>
             <div class="col-sm-8">
-                <input type="text" id="username" name="username" required class="form-control" placeholder="Họ tên" v-model="form.name">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
-            <div class="col-sm-8">
-                <input type="email" class="form-control" v-bind:class="{'is-invalid': invalidEmail && form.email, 'is-valid': !invalidEmail && form.email}" name="email" required id="inputEmail3" placeholder="Email" v-model="form.email" v-on:input="validateEmail">
+                <input type="text" class="form-control" v-bind:class="{'is-invalid': invalidEmail && form.email, 'is-valid': !invalidEmail && form.email}" name="email" required id="inputEmail3" placeholder="Email" v-model="form.email" v-on:input="validateEmail">
                 <span class="text-danger" v-if="invalidEmail && emailMessage">{{ emailMessage }}</span>
             </div>
         </div>
@@ -58,9 +49,7 @@
                     email: null,
                     password: null,
                     confirmPassword: null,
-                    departmentId: '-',
                 },
-                departments: [],
                 invalidPassword: true,
                 invalidPasswordMsg: 'Mật khẩu xác nhận không khớp',
                 invalidEmail: true,
@@ -69,13 +58,6 @@
             }
         },
         methods: {
-            async getDepartment() {
-                let url = '/api/departments'
-                let result = await axios.get(url)
-                if (result.data.status) {
-                    this.departments = result.data.data
-                }
-            },
             async submit() {
                 if (this.invalidPassword || this.form.departmentId == '-') {
                     return
@@ -92,11 +74,6 @@
                 }
             }, 500),
             validateEmail: _.debounce(async function(){
-                this.invalidEmail = true
-                const emailRegex = /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/
-                if (emailRegex.test(this.form.email)) {
-                    this.invalidEmail = false
-                }
                 let url = '/users/checkEmail'
                 let result = await axios.post(url, {email: this.form.email})
                 this.invalidEmail = !result.data.status

@@ -3,8 +3,8 @@
         <thead>
         <tr>
             <th></th>
-            <th>Họ Tên</th>
-            <th>Khoa</th>
+            <th>Tên</th>
+            <th>Tên đăng nhập</th>
             <th>Phân Loại</th>
             <th>Ngày tạo</th>
             <th>Ngày Cập nhật</th>
@@ -18,7 +18,7 @@
                 </div>
             </td>
             <td><div>{{ item.name }}</div></td>
-            <td><div>{{ item.department ? item.department.name : '-' }}</div></td>
+            <td><div>{{ item.email }}</div></td>
             <td>
                 <span class="badge" v-bind:class="{'badge-success': item.role == 'operator',
                                                     'badge-danger': item.role == 'admin'

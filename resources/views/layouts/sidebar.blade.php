@@ -40,14 +40,6 @@
             @endif
             @if (Auth::user()->isAdmin())
             <li class="nav-item">
-                <a href="{{ route('departments.index') }}" class="nav-link">
-                    <i class="nav-icon fa fa-hospital-o"></i>
-                    <p>
-                        {{ __('department.pages.index') }}
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="{{ route('users.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-users"></i>
                     <p>

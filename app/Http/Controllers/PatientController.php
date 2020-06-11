@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Util\Exception;
 
@@ -73,6 +74,7 @@ class PatientController extends Controller
             $patient->note = $request->get('note');
             //$patient->avatar = $request->get('avatar');
             $patient->expiredTime = $request->get('expiredTime');
+            $patient->operator_id = Auth::user()->id;
             $patient->save();
             DB::commit();
         }catch (Exception $e) {

@@ -3,10 +3,10 @@
 return [
     'name' => 'Họ tên',
     'btnSubmit' => 'Tạo',
-    'list' => 'Danh sách người dùng',
+    'list' => 'Danh sách tài khoản',
     'pages' => [
-        'index' => 'Quản lý người dùng',
-        'create' => 'Tạo người dùng',
-        'edit' => 'Chỉnh sửa người dùng'
+        'index' => 'Quản lý tài khoản',
+        'create' => 'Tạo tài khoản',
+        'edit' => 'Chỉnh sửa tài khoản'
     ],
 ];

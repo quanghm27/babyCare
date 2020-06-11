@@ -6,22 +6,18 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="form-group row" v-if="user.department != null">
-            <label  class="col-sm-4 col-form-label">Khoa</label>
+        <div class="form-group row">
+            <label for="username" class="col-sm-4 col-form-label">Tên</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" disabled :value="user.department.name">
+                <input type="text" id="username" name="username" autocomplete="off" required class="form-control" v-model="form.name">
             </div>
         </div>
         <div class="form-group row">
-            <label for="username" class="col-sm-4 col-form-label">Tên người dùng</label>
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Tên đăng nhập</label>
             <div class="col-sm-8">
-                <input type="text" id="username" name="username" autocomplete="off" required class="form-control" placeholder="Họ tên" v-model="form.name">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
-            <div class="col-sm-8">
-                <input type="email" class="form-control" name="email" disabled required id="inputEmail3" placeholder="Email" :value="form.email">
+                <input type="email" class="form-control" disabled v-bind:class="{'is-invalid': invalidEmail && form.email, 'is-valid': !invalidEmail && form.email}"
+                       required id="inputEmail3" v-model="form.email" v-on:input="validateEmail">
+                <span class="text-danger" v-if="invalidEmail && emailMessage">{{ emailMessage }}</span>
             </div>
         </div>
         <div class="form-group row">
@@ -29,26 +25,26 @@
             <div class="col-sm-8">
                 <input type="password" name="current-password"  autocomplete="off" class="form-control"
                        v-bind:class="{'is-valid' : isValidOldPassword && oldPasswordMsg, 'is-invalid' : !isValidOldPassword && oldPasswordMsg}"
-                       required id="inputPassword3"
+                       id="inputPassword3"
                        v-on:input="checkCurrentPassword" placeholder="Password" v-model="form.oldPassword">
             </div>
         </div>
         <div class="form-group row">
             <label for="new-password" class="col-sm-4 col-form-label">Mật khẩu mới</label>
             <div class="col-sm-8">
-                <input type="password" name="new-password" class="form-control" autocomplete="off" required id='new-password' placeholder="Password" v-model="form.newPassword">
+                <input type="password" name="new-password" class="form-control" autocomplete="off" id='new-password' placeholder="Password" v-model="form.newPassword">
             </div>
         </div>
         <div class="form-group row">
             <label for="confirmPassword" class="col-sm-4 col-form-label">Xác nhận mật khẩu mới</label>
             <div class="col-sm-8">
-                <input type="password"  class="form-control" required  autocomplete="off" id="confirmPassword" placeholder="Password"
+                <input type="password"  class="form-control"  autocomplete="off" id="confirmPassword" placeholder="Password"
                        v-bind:class="{'is-invalid': invalidNewPassword && form.confirmPassword}"
                        v-model="form.confirmPassword" v-on:input="validatePassword">
                 <span class="text-danger" v-if="invalidNewPassword && form.confirmPassword">{{ invalidNewPasswordMsg }}</span>
             </div>
         </div>
-        <button type="submit" class="btn btn-info float-right">Tạo người dùng</button>
+        <button type="submit" class="btn btn-info float-right">Cập nhật</button>
     </form>
 </template>
 
@@ -75,9 +71,11 @@
                 },
                 isValidOldPassword: null,
                 oldPasswordMsg: '',
-                invalidNewPassword: true,
+                invalidNewPassword: false,
                 invalidNewPasswordMsg: 'Mật khẩu xác nhận không khớp',
                 isSubmitted: false,
+                invalidEmail: false,
+                emailMessage: '',
             }
         },
         methods: {
@@ -106,11 +104,17 @@
                     this.invalidNewPassword = false
                     return
                 }
+            }, 500),
+            validateEmail: _.debounce(async function(){
+                let url = '/users/checkEmail'
+                let result = await axios.post(url, {email: this.form.email})
+                this.invalidEmail = !result.data.status
+                this.emailMessage = result.data.message
             }, 500)
         },
         computed: {
             submitSucess: function() {
-                return 'Đã tạo thành công'
+                return 'Cập nhật thành công'
             }
         },
         created() {

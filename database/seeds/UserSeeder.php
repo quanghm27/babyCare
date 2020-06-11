@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@babycarevn.com',
-            'department_id'=> 0,
             'password' => bcrypt('123456'),
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()

@@ -32,7 +32,6 @@ class UserController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
-        $user->department_id = $request->get('departmentId');
 
         $roleOperator = Role::where('name', '=', 'operator')->first();
         $user->save();
@@ -99,7 +98,7 @@ class UserController extends Controller
         $userEmail = User::where('email', '=',$email)->first();
         if ($userEmail) {
             // The passwords matches
-            $msg = 'Email đã tồn tại';
+            $msg = 'Tên đăng nhập đã tồn tại';
             return response()->json([
                 'data' => null,
                 'status' => false,

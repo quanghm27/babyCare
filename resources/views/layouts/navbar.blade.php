@@ -8,8 +8,8 @@
             <a href="#" class="nav-link">{{ config('app.hospital_name') }}</a>
         </li>
         @if (Auth::user()->isOperator())
-        <li class="nav-item">
-            <a href="#" class="nav-link">{{ Auth::user()->department->name }}</a>
+        <li class="nav-item" style="border-left: 1px solid #6666;">
+            <a href="#" class="nav-link">{{ Auth::user()->name }}</a>
         </li>
         @endif
     </ul>
