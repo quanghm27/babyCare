@@ -15,7 +15,7 @@
             @if (Auth::user()->isOperator())
             <li class="nav-item">
                 <a href="{{ route('sharekeys.index') }}" class="nav-link">
-                    <i class="nav-icon fa fa-dashboard"></i>
+                    <i class="nav-icon fa fa-users"></i>
                     <p>
                         {{ __('sharekey.pages.index') }}
                     </p>

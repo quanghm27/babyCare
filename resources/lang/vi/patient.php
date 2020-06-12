@@ -10,8 +10,9 @@ return [
     'name' => 'Họ Tên',
     'btnSubmit' => 'Tạo',
     'pages' => [
-        'list' => 'Danh sách bệnh nhân',
-        'create' => 'Tạo bệnh nhân',
-        'history' => 'lịch sử nhiệt độ'
+        'list' => 'Bảng theo dõi nhiệt độ',
+        'create' => 'Tạo hồ sơ bệnh nhân',
+        'history' => 'lịch sử nhiệt độ',
+        'edit' => 'Chỉnh sửa hồ sơ bệnh nhân'
     ],
 ];

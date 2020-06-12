@@ -3,10 +3,10 @@
         <thead>
         <tr>
             <th></th>
-            <th>Mã chia sẻ</th>
-            <th>Trạng thái</th>
-            <th>Mã y tế</th>
             <th>Tên bệnh nhân</th>
+            <th>Mã y tế</th>
+            <th>Phòng bệnh</th>
+            <th>Mã chia sẻ</th>
             <th>Ngày nhập viện</th>
             <th>Ngày xuất viện</th>
         </tr>
@@ -15,16 +15,18 @@
         <tr v-for="item in sharekeyList">
             <td style="width: 5%">
                 <div style="display: inline-block;">
-                    <a href="#">Chỉnh sửa</a>
+                    <a :href="item.editAction">Chỉnh sửa</a>
                 </div>
             </td>
-            <td><div>{{ item.sharekey }}</div></td>
-            <td>
-                <span class="badge badge-success" v-show="!item.isExpired"> {{ 'Còn hạn (' + item.expiredTime + ')'}}</span>
-                <span class="badge badge-danger" v-show="item.isExpired">Hết hạn</span>
-            </td>
-            <td>{{ item.medical_number }}</td>
             <td>{{ item.name }}</td>
+            <td>{{ item.medical_number }}</td>
+            <td>{{ item.roomNo}}</td>
+            <td>
+                <div>{{ item.sharekey }}
+                    <span class="badge badge-success" v-show="!item.isExpired"> {{ 'Còn hạn (' + item.expiredTime + ')'}}</span>
+                    <span class="badge badge-danger" v-show="item.isExpired">Hết hạn</span>
+                </div>
+            </td>
             <td>{{ item.joinDate }}</td>
             <td> {{item.releaseDate}}</td>
         </tr>
@@ -41,6 +43,7 @@
         },
         created() {
             this.sharekeyList.map(function(item) {
+                item.editAction = '/sharekeys/' + item.sharekey + '/edit';
                 item.isExpired = moment(item.expiredTime).isBefore(moment())
                 item.expiredTime = moment(item.expiredTime).fromNow()
                 item.joinDate = moment(item.joinDate).format('DD/MM/YYYY HH:mm')

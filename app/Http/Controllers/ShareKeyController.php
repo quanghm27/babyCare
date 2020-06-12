@@ -20,11 +20,11 @@ class ShareKeyController extends Controller
         $sharekey = $request->get('shareKey');
 
         // Check sharekey exist
-        $patient = Patient::where('shareKey', $sharekey);
+        $patient = Patient::where('shareKey', $sharekey)->first();
         if (!is_null($patient)) {
             $result = [
                 'status' => false,
-                'message' => 'Đã tồn tại mã chia sẻ',
+                'message' => 'Mã chia sẻ bị trùng',
                 'data' => null
             ];
             return response()->json($result);
@@ -56,5 +56,13 @@ class ShareKeyController extends Controller
         $patient = Patient::where('operator_id', $operator_id)->get();
 
         return view('sharekeys.index')->with(['sharekeys' => $patient]);
+    }
+
+    public function edit($sharekey)
+    {
+        $operator_id = Auth::id();
+        $patient = Patient::where('shareKey', $sharekey)->where('operator_id', $operator_id)->firstOrFail();
+
+        return view('patients.edit')->with(['patient' => $patient]);
     }
 }

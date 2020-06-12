@@ -125,9 +125,40 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, $id)
     {
         //
+//        $sharekey = $request->get('sharekey');
+//        $operator_id = Auth::user()->id;
+//        $patient = Patient::where('shareKey', $sharekey)->where('operator_id', $operator_id)->firstOrFail();
+
+        $patient = Patient::findOrFail($id);
+        try {
+            DB::beginTransaction();
+            $patient->shareKey = $request->get('sharekey');
+            $patient->name = $request->get('name');
+            $patient->bedNo = $request->get('bedNo');
+            $patient->roomNo = $request->get('roomNo');
+            $patient->maxTemp = $request->get('maxTemp');
+            $patient->minTemp = $request->get('minTemp');
+            $patient->joinDate = $request->get('joinDate');
+            $patient->medical_number = $request->get('medical_number');
+            $patient->phone_number = $request->get('phone_number');
+            $patient->expiredTime = $request->get('expiredTime');
+            $patient->note = $request->get('note');
+
+            $patient->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+
+        return response()->json([
+            'data' => null,
+            'message' => 'OK',
+            'status' => true
+        ]);
     }
 
     /**

@@ -2,6 +2,6 @@
 
 return [
     'pages' => [
-        'index' => 'Quản lý mã chia sẻ',
+        'index' => 'Quản lý bệnh nhân',
     ],
 ];

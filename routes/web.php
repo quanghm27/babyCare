@@ -29,9 +29,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('patients', 'PatientController')->middleware('operator');
+Route::get('/history/{shareKey}', 'PatientController@showHistory')->middleware('operator');
+
 Route::get('/checkShareKey', 'ShareKeyController@checkShareKey')->middleware('operator');
 Route::get('/sharekeys', 'ShareKeyController@index')->middleware('operator')->name('sharekeys.index');
-Route::get('/history/{shareKey}', 'PatientController@showHistory')->middleware('operator');
+Route::get('/sharekeys/{shareKey}/edit', 'ShareKeyController@edit')->middleware('operator')->name('sharekeys.edit');
 
 Route::resource('users', 'UserController', ['except' => 'edit,update'])->middleware('admin');
 Route::resource('users', 'UserController', [

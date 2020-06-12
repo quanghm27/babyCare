@@ -140,6 +140,10 @@
     }
     .see-more {
         cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+    .see-more:hover {
+        transform: scale(1.1);
     }
     .temp-safe {
         background-image: linear-gradient(45deg, #85c1e9, #829acf);
@@ -200,4 +204,5 @@
         position: absolute;
         border: 2px solid white;
     }
+
 </style>
