@@ -51,7 +51,7 @@
             async inital() {
                 let params = [{
                     'sharedKey' : this.shareKey,
-                    'fromDate': moment().subtract(5, 'days'),
+                    'fromDate': moment().subtract(10, 'days'),
                     'toDate': moment()
                 }]
                 let result = await axios.post(API_HISTORY, params)
