@@ -1,7 +1,21 @@
 @extends('layouts.admin')
 
 @section('main-content-header')
-    <h1 class="m-0 text-dark">{{ __('sharekey.pages.index') }}</h1>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-10">
+                    <h1 class="m-0 text-dark">{{ __('sharekey.pages.index') }}</h1>
+                </div>
+                <div class="col-sm-2 text-right">
+                    <a href="{{ route('patients.create') }}" class="btn btn-info">
+                        <i class="nav-icon fa fa-plus"></i>
+                        {{ __('patient.pages.create') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('main-content')
