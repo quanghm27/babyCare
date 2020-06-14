@@ -21,14 +21,21 @@
 @section('main-content')
     <div class="container-fluid">
         <div class="card card-default">
-            <div class="card-header">
-                <h5 class="card-title"> <i class="fa fa-lg fa-bullhorn"></i> Dữ liệu sẽ được cập nhật sau
-                    <span id="counter" style="color:orange;font-weight:bold">--</span>
-                </h5>
-            </div>
-            <div class="card-body">
-                <patient-list :patients="{{ $patients }}"></patient-list>
-            </div>
+            @if ($patients->count() > 0)
+                <div class="card-header">
+                    <h5 class="card-title"> <i class="fa fa-lg fa-bullhorn"></i> Dữ liệu sẽ được cập nhật sau
+                        <span id="counter" style="color:orange;font-weight:bold">--</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <patient-list :patients="{{ $patients }}"></patient-list>
+                </div>
+            @else
+                <div class="card-header">
+                    <h5 class="card-title"> <i class="fa fa-lg fa-bullhorn"></i> Chưa có bệnh nhân...
+                    </h5>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

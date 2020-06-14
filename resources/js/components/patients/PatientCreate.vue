@@ -119,7 +119,7 @@
 
 moment.locale('vi')
 const URL_VALIDATE_SHAREKEY = 'http://bbc-api.gl-sci.tech/api/Common/GetShareKey/'
-const URL_CHECK_EXIST_SHAREKEY = '/checkShareKey'
+const URL_CHECK_EXIST_SHAREKEY = '/checkNewShareKey'
 const FORM_ACTION = '/patients'
 
 export default {

@@ -30,7 +30,7 @@ class PatientController extends Controller
     {
         //
         $operator_id = Auth::user()->id;
-        $patients = Patient::where('operator_id', $operator_id)->get();
+        $patients = Patient::where('operator_id', $operator_id)->where('releaseDate', null)->get();
 
         $data = [
             'patients' => $patients

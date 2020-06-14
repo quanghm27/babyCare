@@ -13,7 +13,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-code"></i></span>
                     </div>
-                    <input id="sharekey" type="text" v-bind:class="{'is-invalid' : invalidShareKey, 'is-valid': validShareKey}" class="form-control" required autocomplete="off"
+                    <input :disabled="!edit" id="sharekey" type="text" v-bind:class="{'is-invalid' : invalidShareKey, 'is-valid': validShareKey}" class="form-control" required autocomplete="off"
                            v-model="form.sharekey" @keyup="validateShareKey()" @keydown="clearValidateShareKey()">
                     <span class="text-danger" v-if="invalidShareKey">{{ shareKeyError }}</span>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-hospital-o"></i></span>
                     </div>
-                    <input id="roomNo" type="number" class="form-control" v-model="form.roomNo" required autocomplete="off">
+                    <input :disabled="!edit" id="roomNo" type="number" class="form-control" v-model="form.roomNo" required autocomplete="off">
                 </div>
             </div>
             <div class="col-3">
@@ -35,7 +35,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-bed"></i></span>
                     </div>
-                    <input id="bedNo" type="number" class="form-control" v-model="form.bedNo" required autocomplete="off">
+                    <input :disabled="!edit" id="bedNo" type="number" class="form-control" v-model="form.bedNo" required autocomplete="off">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                     </div>
-                    <input id="name" type="text"class="form-control" v-model="form.name" required autocomplete="off">
+                    <input :disabled="!edit" id="name" type="text"class="form-control" v-model="form.name" required autocomplete="off">
                 </div>
             </div>
             <div class="col-5">
@@ -55,7 +55,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                     </div>
-                    <input id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phone_number" required autocomplete="off">
+                    <input :disabled="!edit" id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phone_number" required autocomplete="off">
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                     </div>
-                    <input type="datetime-local" class="form-control" v-model="form.joinDate">
+                    <input :disabled="!edit" type="datetime-local" class="form-control" v-model="form.joinDate">
                 </div>
             </div>
             <div class="col-5">
@@ -75,7 +75,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-medkit"></i></span>
                     </div>
-                    <input id="meidcalId" type="text" class="form-control" v-model="form.medical_number" required autocomplete="off">
+                    <input :disabled="!edit" id="meidcalId" type="text" class="form-control" v-model="form.medical_number" required autocomplete="off">
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-info">Thấp nhất</button>
                     </div>
-                    <input type="text" class="form-control" v-mask="'##°C'" v-model="form.minTemp">
+                    <input :disabled="!edit" type="text" class="form-control" v-mask="'##°C'" v-model="form.minTemp">
                 </div>
             </div>
             <div class="col-4">
@@ -98,19 +98,19 @@
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-danger">Cao nhất</button>
                     </div>
-                    <input type="text" class="form-control" v-mask="'##°C'" v-model="form.maxTemp">
+                    <input :disabled="!edit" type="text" class="form-control" v-mask="'##°C'" v-model="form.maxTemp">
                 </div>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-12">
                 <label>Ghi chú</label>
-                <textarea class="form-control" rows="3" placeholder="Nhập ghi chú ..." v-model="form.note"></textarea>
+                <textarea :disabled="!edit" class="form-control" rows="3" placeholder="Nhập ghi chú ..." v-model="form.note"></textarea>
             </div>
         </div>
         <input type="hidden" v-model="form.deviceUserId"/>
         <input type="hidden" v-model="form.expiredTime"/>
-        <div class="form-group">
+        <div class="form-group"  v-if="edit">
             <button type="submit" class="btn btn-primary">Cập nhật hồ sơ</button>
         </div>
     </form>
@@ -119,11 +119,11 @@
 
 moment.locale('vi')
 const URL_VALIDATE_SHAREKEY = 'http://bbc-api.gl-sci.tech/api/Common/GetShareKey/'
-const URL_CHECK_EXIST_SHAREKEY = '/checkShareKey'
+const URL_CHECK_EXIST_SHAREKEY = '/checkEditShareKey'
 const FORM_ACTION = '/patients/'
 
 export default {
-    props: ['patient'],
+    props: ['patient', 'edit'],
     data() {
         return {
             form: {

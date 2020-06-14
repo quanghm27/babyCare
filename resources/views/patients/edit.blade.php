@@ -18,7 +18,7 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <patient-edit :patient="{{ $patient }}"></patient-edit>
+                        <patient-edit :patient="{{ $patient }}" :edit="{{ json_encode($edit) }}"></patient-edit>
                     </div>
                 </div>
             </div>

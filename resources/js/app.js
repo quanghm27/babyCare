@@ -23,11 +23,8 @@ files.keys().forEach(function(key) {
     let componentName =  name.split(/(?=[A-Z])/).map(s => s.toLowerCase()).join('-').split('.')[0];
     Vue.component(componentName, files(key).default);
 });
-
-//Vue.component('patient-form', require('./components/PatientCreate.vue').default);
-// const VueMask = require('v-mask').default
-//
-// Vue.use(VueMask)
+import VuejsDialog from "vuejs-dialog"
+Vue.use(VuejsDialog)
 
 import { VueMaskDirective } from 'v-mask'
 Vue.directive('mask', VueMaskDirective )
