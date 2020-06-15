@@ -66,7 +66,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                     </div>
-                    <input :disabled="!edit" type="datetime-local" class="form-control" v-model="form.joinDate">
+                    <input :disabled="!edit" type="text" v-mask="'##/##/#### ##:##'" class="form-control" v-model="form.joinDate">
                 </div>
             </div>
             <div class="col-5">
@@ -133,7 +133,7 @@ export default {
                 medical_number: this.patient.medical_number,
                 bedNo: this.patient.bedNo,
                 roomNo: this.patient.roomNo,
-                joinDate: this.patient.joinDate,
+                joinDate: moment(this.patient.joinDate).format('DD/MM/YYYY HH:mm'),
                 minTemp: this.patient.minTemp,
                 maxTemp: this.patient.maxTemp,
                 note: this.patient.note,
@@ -185,7 +185,7 @@ export default {
             }
             this.validShareKey = true
         },
-        clearValidateShareKey() {
+        clearValidateShareKey() {``
             this.invalidShareKey = false
             this.shareKeyError = ''
         },
@@ -194,11 +194,14 @@ export default {
                 return
             }
             // unmask before submit
-            this.form.minTemp = _.replace(this.form.minTemp, '°C', '')
-            this.form.maxTemp = _.replace(this.form.maxTemp, '°C', '')
-            this.form.phone_number = _.replace(this.form.phone_number, /-/g, '')
+            let params = {...this.form}
+            // unmask before submit
+            params.minTemp = _.replace(this.form.minTemp, '°C', '')
+            params.maxTemp = _.replace(this.form.maxTemp, '°C', '')
+            params.phoneNo = _.replace(this.form.phoneNo, /-/g, '')
+            params.joinDate = moment(this.form.joinDate, 'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm')
 
-            let result = await axios.put(FORM_ACTION + this.patient.id, this.form)
+            let result = await axios.put(FORM_ACTION + this.patient.id, params)
             if (result.data.status) {
                 this.isSubmitted = true
             }

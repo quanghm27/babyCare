@@ -66,7 +66,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                     </div>
-                    <input type="datetime-local" class="form-control" v-model="form.joinDate">
+                    <input type="text" v-mask="'##/##/#### ##:##'" class="form-control" v-model="form.joinDate">
                 </div>
             </div>
             <div class="col-5">
@@ -132,7 +132,7 @@ export default {
                 medicalNo: '',
                 bedNo: '',
                 roomNo: '',
-                joinDate: '',
+                joinDate: moment().format('DD/MM/YYYY HH:mm'),
                 minTemp: 35,
                 maxTemp: 38,
                 note:'',
@@ -187,12 +187,13 @@ export default {
             if (this.invalidShareKey) {
                 return
             }
+            let params = {...this.form}
             // unmask before submit
-            this.form.minTemp = _.replace(this.form.minTemp, '°C', '')
-            this.form.maxTemp = _.replace(this.form.maxTemp, '°C', '')
-            this.form.phoneNo = _.replace(this.form.phoneNo, /-/g, '')
-
-            let result = await axios.post(FORM_ACTION, this.form)
+            params.minTemp = _.replace(this.form.minTemp, '°C', '')
+            params.maxTemp = _.replace(this.form.maxTemp, '°C', '')
+            params.phoneNo = _.replace(this.form.phoneNo, /-/g, '')
+            params.joinDate = moment(this.form.joinDate, 'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm')
+            let result = await axios.post(FORM_ACTION, params)
             if (result.data.status) {
                 this.isSubmitted = true
             }
