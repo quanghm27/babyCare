@@ -65,6 +65,7 @@
                 let url = '/users'
                 let result = axios.post(url, this.form)
                 this.isSubmitted = true
+                window.open('/users', '_self')
             },
             validatePassword: _.debounce(function(){
                 this.invalidPassword = true
@@ -86,7 +87,6 @@
             }
         },
         created() {
-            this.getDepartment()
         },
         fiters: {
             celsius: function (value) {

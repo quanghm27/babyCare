@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Patient;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -72,6 +73,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return response()->json([
+            'data' => null,
+            'status' => true,
+            'message' => 'Xóa tài khoản thành công'
+        ]);
+    }
     public function checkPassword(Request $request)
     {
         $email = $request->get('email');
