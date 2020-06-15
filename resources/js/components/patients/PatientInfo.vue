@@ -4,12 +4,12 @@
             <div class="card-header header-safe">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-4 col-sm-2 card-header-info " v-resize-text="{ratio:1.5, minFontSize: '14px', maxFontSize: '25px', delay: 200}">Phòng: {{ patientInfo.roomNo }}</div>
-                        <div class="col-md-8 col-sm-2 card-header-info text-right" v-resize-text="{ratio:1.5, minFontSize: '14px', maxFontSize: '25px', delay: 200}">Mã y tế: {{ patientInfo.medical_number }}</div>
+                        <div class="col-md-4 col-sm-2 card-header-info ">Phòng: {{ patientInfo.roomNo }}</div>
+                        <div class="col-md-8 col-sm-2 card-header-info text-right">Mã y tế: {{ patientInfo.medical_number }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 card-header-info" v-resize-text="{ratio:1.5, minFontSize: '14px', maxFontSize: '25px', delay: 200}">Giường: {{ patientInfo.bedNo }}</div>
-                        <div class="col-md-8 col-sm-8 card-header-info text-right" v-resize-text="{ratio:1.5, minFontSize: '14px', maxFontSize: '25px', delay: 200}">Số điện thoại: {{ patientInfo.phone_number}}</div>
+                        <div class="col-md-4 col-sm-4 card-header-info">Giường: {{ patientInfo.bedNo }}</div>
+                        <div class="col-md-8 col-sm-8 card-header-info text-right">Số điện thoại: {{ patientInfo.phone_number}}</div>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                            v-if="isShownHistory"></component>
             </div>
             <div class="card-footer header-safe text-center">
-                <p class="card-header-info see-more" @click="goToHistory()">
+                <p class="text-white see-more" @click="goToHistory()">
                     {{ hideHistory ? 'Xem Lịch Sử' : 'Ẩn Lịch Sử'}}
                 <i class="fa" v-bind:class="hideHistory ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'"></i>
                 </p>
@@ -207,7 +207,8 @@
     }
     @media (max-width: 1366px) {
         .card-header-info {
-            font-size: 14px
+            font-size: 13px;
+            text-align: left !important;
         }
         .patient-image {
             height: 80px;

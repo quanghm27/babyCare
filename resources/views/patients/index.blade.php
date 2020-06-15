@@ -42,7 +42,7 @@
 
 @section('page-script')
     <script>
-        //window.onload = countDown;
+        window.onload = countDown;
 
         function countDown() {
             let timer = 60000;
