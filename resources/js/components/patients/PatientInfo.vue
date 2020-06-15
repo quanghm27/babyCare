@@ -166,12 +166,12 @@
     }
     .patient-name {
         top: 15%;
-        left: 25%;
+        left: 120px;
         font-size: 30px;
         font-weight: 200;
     }
     .patient-birth, .patient-note {
-        left: 25%;
+        left: 125px;
     }
     .patient-birth {
         top: 35%;
@@ -182,14 +182,14 @@
         font-size: 14px;
     }
     .temperature-range {
-        top: 35%;
+        top: 170px;
         right: 5%;
         font-size: 14px;
     }
     .patient-temperature {
-        top: 15%;
+        top: 120px;
         right: 5%;
-        font-size: 30px;
+        font-size: 40px;
         font-weight: 500;
     }
     .card-body {
