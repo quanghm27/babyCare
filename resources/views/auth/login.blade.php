@@ -31,10 +31,10 @@
                 @csrf
                 <div class="input-group mb-3">
 
-                    <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email">
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Tên đăng nhập" name="email">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fa fa-envelope"></span>
+                            <span class="fa fa-user"></span>
                         </div>
                     </div>
                     @error('email')
@@ -44,7 +44,7 @@
                     @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mật khẩu" name="password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fa fa-lock"></span>

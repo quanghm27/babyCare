@@ -49,7 +49,6 @@
             let counterText = document.getElementById('counter');
 
             let interval = setInterval(function(){
-                console.log(interval);
                 timer -= 1000;
                 counterText.textContent = `${timer / 1000} giây`;
                 if (timer <= 0) {

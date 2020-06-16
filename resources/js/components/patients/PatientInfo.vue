@@ -68,9 +68,10 @@
         computed: {
             tempState() {
                 let tempState = ''
+
                 if (this.patientInfo.dataValue <= 37.4) {
                     tempState = 'temp-safe'
-                } else if ( 37.5 < this.patientInfo.dataValue &&  this.patientInfo.dataValue <= 38.4) {
+                } else if ( 37.5 <= this.patientInfo.dataValue &&  this.patientInfo.dataValue <= 38.4) {
                     tempState = 'temp-warn'
                 } else {
                     tempState = 'temp-danger'
