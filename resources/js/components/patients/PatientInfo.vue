@@ -1,7 +1,7 @@
 <template v-if="hideHistory">
     <div v-bind:class="{'col-md-4': hideHistory, 'col-md-12' : !hideHistory}">
         <div class="card">
-            <div class="card-header header-safe">
+            <div class="card-header" v-bind:class="cardHeaderClass">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-4 col-sm-2 card-header-info ">Phòng: {{ patientInfo.roomNo }}</div>
@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body position-relative" v-bind:class="tempState">
+            <div class="card-body position-relative" v-bind:class="cardBodyClass">
                 <div class="batery-info text-white position-absolute">
                     <i class="fa" v-bind:class="batteryInfo"></i>
                     {{ patientInfo.batteryValue | percent}}</div>
@@ -42,7 +42,7 @@
                            v-bind:maxTemp="patientInfo.maxTemp"
                            v-if="isShownHistory"></component>
             </div>
-            <div class="card-footer header-safe text-center">
+            <div class="card-footer text-center"  v-bind:class="cardFooterClass">
                 <p class="text-white see-more" @click="goToHistory()">
                     {{ hideHistory ? 'Xem Lịch Sử' : 'Ẩn Lịch Sử'}}
                 <i class="fa" v-bind:class="hideHistory ? 'fa-arrow-circle-down' : 'fa-arrow-circle-up'"></i>
@@ -62,9 +62,16 @@
         data() {
             return {
                 hideHistory: true,
-                isShownHistory: false
+                isShownHistory: false,
+                cardHeaderClass: '',
+                cardBodyClass: '',
+                cardFooterClass: ''
             }
         },
+        created() {
+            this.setCardClass()
+        }
+        ,
         computed: {
             tempState() {
                 let tempState = ''
@@ -113,6 +120,21 @@
                     this.isShownHistory = true
                 }
                 this.hideHistory = !this.hideHistory
+            },
+            setCardClass() {
+                if (this.patientInfo.dataValue <= 37.4) {
+                    this.cardHeaderClass = 'header-safe'
+                    this.cardBodyClass = 'body-safe'
+                    this.cardFooterClass = 'footer-safe'
+                } else if ( 37.5 <= this.patientInfo.dataValue &&  this.patientInfo.dataValue <= 38.4) {
+                    this.cardHeaderClass = 'header-warn'
+                    this.cardBodyClass = 'body-warn'
+                    this.cardFooterClass = 'footer-warn'
+                } else {
+                    this.cardHeaderClass = 'header-danger'
+                    this.cardBodyClass = 'body-danger'
+                    this.cardFooterClass = 'footer-danger'
+                }
             }
         },
         filters: {
@@ -135,7 +157,31 @@
         font-size: 14px;
     }
     .header-safe {
-        background-image: linear-gradient(45deg, #579dd4, #5d7bb9);
+        background-image: linear-gradient(45deg, #5594d4, #536eb4);
+    }
+    .body-safe {
+        background-image: linear-gradient(45deg, #85bee8, #829cd1);
+    }
+    .footer-safe {
+        background-image: linear-gradient(45deg, #559fdb, #5378bd);
+    }
+    .header-warn {
+        background-image: linear-gradient(45deg, #f88607, #f26908);
+    }
+    .body-warn {
+        background-image: linear-gradient(45deg, #fdb41b, #f79621);
+    }
+    .footer-warn {
+        background-image: linear-gradient(45deg, #eb941c, #f26a08);
+    }
+    .header-danger {
+        background-image: linear-gradient(45deg, #b24e2f, #af302a);
+    }
+    .body-danger {
+        background-image: linear-gradient(45deg, #bf7044, #bd433c);
+    }
+    .footer-danger {
+        background-image: linear-gradient(45deg, #b36031, #af302a);
     }
     .card-header-info {
         font-weight: 700;
@@ -148,15 +194,6 @@
     }
     .see-more:hover {
         transform: scale(1.1);
-    }
-    .temp-safe {
-        background-image: linear-gradient(45deg, #85c1e9, #829acf);
-    }
-    .temp-warn {
-        background-image: linear-gradient(45deg, #fdb71a, #f79621);
-    }
-    .temp-danger {
-        background-image: linear-gradient(45deg, #c07545, #bd433c);
     }
     .batery-info {
         font-size: 0.9em;
