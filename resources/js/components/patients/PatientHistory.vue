@@ -56,9 +56,8 @@
                 }]
                 let result = await axios.post(API_HISTORY, params)
                 if (result.data.status) {
-                    let datas = result.data.data.reduce(function(acc, data, index) {
-                        const date = moment(data.updateTime).date()
-                        const month = moment(data.updateTime).month() + 1
+                    let orderedData = _.orderBy(result.data.data, 'id', 'desc')
+                    let datas = orderedData.reduce(function(acc, data) {
                         const day = moment(data.updateTime).format('LL')
                         const history = {
                             dataValue : data.dataValue,
@@ -68,8 +67,8 @@
                         if (!acc[day]) {
                             acc[day] = []
                         }
+                        // add days from lastest
                         acc[day].push(history)
-
                         return acc
                     }, {})
                     this.historyDates = datas

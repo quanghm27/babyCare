@@ -105,7 +105,7 @@
                 return info
             },
             lastseen() {
-                return moment(this.patientInfo.serverTime).fromNow()
+                return moment(this.patientInfo.updateTime).subtract(2, 'seconds').fromNow()
             },
             imageAvatar() {
                 return this.patientInfo.imageUrl || '/images/default-avatar.png'
@@ -152,7 +152,7 @@
         height: 100px;
     }
     .last-update {
-        left: 5%;
+        left: 35px;
         top: 65%;
         font-size: 14px;
     }
@@ -204,12 +204,12 @@
     }
     .patient-name {
         top: 15%;
-        left: 120px;
+        left: 140px;
         font-size: 30px;
         font-weight: 200;
     }
     .patient-birth, .patient-note {
-        left: 125px;
+        left: 140px;
     }
     .patient-birth {
         top: 35%;
