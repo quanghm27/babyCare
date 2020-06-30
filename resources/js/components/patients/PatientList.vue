@@ -8,7 +8,7 @@
                 <patient-info v-for="item in alertPatients" :key="item.id" :patientInfo="item"></patient-info>
             </div>
         </div>
-        <div v-else>
+        <div v-if="orderedPatientInfos.length > 0">
             <h6>Bệnh nhân có nhiệt độ an toàn</h6>
             <div class="row">
                 <patient-info v-for="item in orderedPatientInfos" :key="item.id" :patientInfo="item"></patient-info>
