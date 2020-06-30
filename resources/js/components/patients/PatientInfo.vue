@@ -199,7 +199,7 @@
         font-size: 0.9em;
         top: 5%;
     }
-    .patient-avatar, .patient-temperature {
+    .patient-avatar {
         top: 2em;
     }
     .patient-name {
@@ -225,9 +225,9 @@
         font-size: 14px;
     }
     .patient-temperature {
-        top: 120px;
+        top: 90px;
         right: 5%;
-        font-size: 40px;
+        font-size: 60px;
         font-weight: 500;
     }
     .card-body {
@@ -274,6 +274,12 @@
             left: 110px;
             top: 38%;
             font-size:12px;
+        }
+        .patient-temperature {
+            top: 120px;
+            right: 5%;
+            font-size: 40px;
+            font-weight: 500;
         }
     }
 </style>

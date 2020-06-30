@@ -1,5 +1,17 @@
 const mix = require('laravel-mix');
 
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.wav$/,
+                loader: 'url-loader'
+            }
+        ]
+    }
+});
+
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management

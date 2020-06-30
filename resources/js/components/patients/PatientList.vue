@@ -1,14 +1,14 @@
 <template>
     <div class="container-fluid">
-        <button id="playAudio" @click="playSound()" style="visibility: hidden"></button>
+        <button id="playAudio" @click="playSound()" style="display: none"></button>
         <audio id="audio" src="/sound/alert_patient.wav" muted></audio>
         <div v-if="alertPatients.length > 0">
             <h6>Bệnh nhân ngoài khoảng nhiệt độ an toàn</h6>
-            <div class="row">
+            <div class="row pt-10 bg-antiquewhite">
                 <patient-info v-for="item in alertPatients" :key="item.id" :patientInfo="item"></patient-info>
             </div>
         </div>
-        <div v-if="orderedPatientInfos.length > 0">
+        <div v-if="orderedPatientInfos.length > 0" style="margin-top: 2%">
             <h6>Bệnh nhân có nhiệt độ an toàn</h6>
             <div class="row">
                 <patient-info v-for="item in orderedPatientInfos" :key="item.id" :patientInfo="item"></patient-info>
@@ -108,3 +108,12 @@
         }
     }
 </script>
+
+<style scoped="scoped">
+    .pt-10 {
+        padding-top: 10px;
+    }
+    .bg-antiquewhite {
+        background: antiquewhite;
+    }
+</style>
