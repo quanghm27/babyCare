@@ -26,6 +26,10 @@
                     <h5 class="card-title"> <i class="fa fa-lg fa-bullhorn"></i> Dữ liệu sẽ được cập nhật sau
                         <span id="counter" style="color:orange;font-weight:bold">--</span>
                     </h5>
+                    <button id="btn-toggle-alert" class="pull-right btn btn-info">
+                        <i class="nav-icon fa fa-bullhorn"></i>
+                        Tắt cảnh báo
+                    </button>
                 </div>
                 <div class="card-body">
                     <patient-list :patients="{{ $patients }}"></patient-list>
@@ -42,7 +46,39 @@
 
 @section('page-script')
     <script>
-        window.onload = countDown;
+        window.onload = function() {
+            countDown();
+            initalAlert();
+        }
+
+        $('#btn-toggle-alert').click(function(){
+            let alert = JSON.parse(localStorage.getItem('alertSound'))
+            localStorage.setItem('alertSound', JSON.stringify(!alert))
+            let element = $(this)
+            let icon = '<i class="nav-icon fa fa-bullhorn"></i>'
+            if (element.hasClass('btn-info')) {
+                element.removeClass('btn-info').addClass('btn-danger')
+                element.html(`${icon + ' Bật cảnh báo'}`)
+            } else {
+                element.removeClass('btn-danger').addClass('btn-info')
+                element.html(`${icon + ' Tắt cảnh báo'}`)
+            }
+        });
+
+        function initalAlert() {
+            let alert = JSON.parse(localStorage.getItem('alertSound'))
+            let element = $('#btn-toggle-alert')
+            let icon = '<i class="nav-icon fa fa-bullhorn"></i>'
+            if (alert) {
+                // alert ON
+                element.removeClass('btn-danger').addClass('btn-info')
+                element.html(`${icon + ' Tắt cảnh báo'}`)
+            } else {
+                // alert OFF
+                element.removeClass('btn-info').addClass('btn-danger')
+                element.html(`${icon + ' Bật cảnh báo'}`)
+            }
+        }
 
         function countDown() {
             let timer = 60000;
