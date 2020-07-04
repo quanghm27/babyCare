@@ -28,13 +28,11 @@
     "dependencies": {
         "admin-lte": "^3.0.5",
         "chart.js": "^2.9.3",
-        "font-awesome": "^4.7.0",
         "v-mask": "^2.2.1",
         "vue-chartjs": "^3.5.0",
         "vue-loader": "^15.9.2",
         "vue-resize-text": "^0.1.1",
         "vue-router": "^3.3.2",
-        "vuejs-datetimepicker": "^1.1.13",
-        "vuejs-dialog": "^1.4.1"
+        "vuejs-datetimepicker": "^1.1.13"
     }
 }

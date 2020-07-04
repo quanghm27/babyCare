@@ -12,6 +12,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse">
 <div id="app" class="wrapper">
