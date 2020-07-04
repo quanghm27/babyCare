@@ -71,7 +71,7 @@
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                     </div>
                     <!-- /.col -->
                 </div>
