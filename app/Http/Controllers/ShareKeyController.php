@@ -116,13 +116,15 @@ class ShareKeyController extends Controller
     public function toggleReleasePatient(Request $request)
     {
         $id = $request->get('id');
+        $releaseTime = $request->get('releaseTime');
+
         $patient = Patient::findOrFail($id);
         try {
             DB::beginTransaction();
             if (!is_null($patient->releaseDate)) {
                 $patient->releaseDate = null;
             } else {
-                $patient->releaseDate = Carbon::now();
+                $patient->releaseDate = $releaseTime;
             }
             $patient->save();
             DB::commit();

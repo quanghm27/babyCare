@@ -56,6 +56,16 @@
                     </span>
                     @enderror
                 </div>
+                <div class="row mb-5">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox"  id="remember" name="remember">
+                            <label for="remember" class="form-check-label">
+                                Ghi nhớ mật khẩu
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-12">

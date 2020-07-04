@@ -28,7 +28,7 @@
                     </h5>
                     <button id="btn-toggle-alert" class="pull-right btn btn-info">
                         <i class="nav-icon fa fa-bullhorn"></i>
-                        Tắt cảnh báo
+                        Cảnh báo đang tắt
                     </button>
                 </div>
                 <div class="card-body">
@@ -58,10 +58,10 @@
             let icon = '<i class="nav-icon fa fa-bullhorn"></i>'
             if (element.hasClass('btn-info')) {
                 element.removeClass('btn-info').addClass('btn-danger')
-                element.html(`${icon + ' Bật cảnh báo'}`)
+                element.html(`${icon + ' Cảnh báo đang tắt'}`)
             } else {
                 element.removeClass('btn-danger').addClass('btn-info')
-                element.html(`${icon + ' Tắt cảnh báo'}`)
+                element.html(`${icon + ' Cảnh báo đang bật'}`)
             }
         });
 
@@ -72,11 +72,11 @@
             if (alert) {
                 // alert ON
                 element.removeClass('btn-danger').addClass('btn-info')
-                element.html(`${icon + ' Tắt cảnh báo'}`)
+                element.html(`${icon + ' Cảnh báo đang bật'}`)
             } else {
                 // alert OFF
                 element.removeClass('btn-info').addClass('btn-danger')
-                element.html(`${icon + ' Bật cảnh báo'}`)
+                element.html(`${icon + ' Cảnh báo đang tắt'}`)
             }
         }
 
