@@ -77,14 +77,9 @@
                     </div>
                     <div class="modal-body">
                         Xác nhận ngày bệnh nhân xuất viện?
-                        <div class="form-group row mt-3">
+                        <div class="form-group row mt-1">
                             <div class="col-7">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                    <datetime format="DD/MM/YYYY H:i" v-model="releaseDatetime" ></datetime>
-                                </div>
+                                <datetime format="DD/MM/YYYY H:i" v-model="releaseDatetime" ></datetime>
                             </div>
                         </div>
                         <div class="row mb-2">
