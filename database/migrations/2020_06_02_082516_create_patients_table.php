@@ -17,8 +17,8 @@ class CreatePatientsTable extends Migration
             $table->id();
             $table->string('sharekey')->unique();
             $table->integer('deviceUserId');
-            $table->string('medical_number');
-            $table->string('phone_number');
+            $table->string('medical_number')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('name');
             $table->string('roomNo');
             $table->string('bedNo');

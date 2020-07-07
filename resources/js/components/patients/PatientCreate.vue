@@ -55,7 +55,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                     </div>
-                    <input id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phoneNo" required autocomplete="off">
+                    <input id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phoneNo" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-medkit"></i></span>
                     </div>
-                    <input id="meidcalId" type="text" class="form-control" v-model="form.medicalNo" required autocomplete="off">
+                    <input id="meidcalId" type="text" class="form-control" v-model="form.medicalNo" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -177,6 +177,7 @@ export default {
 
             this.form.deviceUserId = deviceUserId
             this.form.avatar = result.data.data.imageUrl
+            this.form.name = result.data.data.fullName
             this.validShareKey = true
         },
         clearValidateShareKey() {

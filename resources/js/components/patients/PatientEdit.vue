@@ -55,7 +55,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                     </div>
-                    <input :disabled="!edit" id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phone_number" required autocomplete="off">
+                    <input :disabled="!edit" id="phoneNo" type="text" class="form-control" v-mask="'###-###-####'" v-model="form.phone_number" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-medkit"></i></span>
                     </div>
-                    <input :disabled="!edit" id="meidcalId" type="text" class="form-control" v-model="form.medical_number" required autocomplete="off">
+                    <input :disabled="!edit" id="meidcalId" type="text" class="form-control" v-model="form.medical_number" autocomplete="off">
                 </div>
             </div>
         </div>
