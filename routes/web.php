@@ -66,5 +66,5 @@ Route::get('/download', function(){
         }
     }
 
-    return ' Not support OS: ' + $useragent ;
+    return ' Not support OS: ' . $useragent ;
 });
